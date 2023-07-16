@@ -17,13 +17,6 @@ permissions:
   contents: read
 
 jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run OX Security Scan to check for vulnerabilities
-        with:
-          ox_api_key: ox_o0tzt6i4rxtbmr7R-gFed746JfMK4QO5iULz
-        uses: oxsecurity/ox-security-scan@main
   build_minikube:
     runs-on: ubuntu-20.04
     steps:
@@ -89,3 +82,10 @@ jobs:
           TESTSUITE: unittest
         run: make test
         continue-on-error: false
+  security:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Run OX Security Scan to check for vulnerabilities
+          with:
+            ox_api_key: ox_o0tzt6i4rxtbmr7R-gFed746JfMK4QO5iULz
+          uses: oxsecurity/ox-security-scan@main
